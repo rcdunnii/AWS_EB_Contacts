@@ -12,6 +12,8 @@ var nodemailer    = require("nodemailer");
 var mg            = require('nodemailer-mailgun-transport');
 //var smtpTransport = require('nodemailer-smtp-transport');
 var dotenv 		  = require('dotenv');
+// load the auth variables
+var configAuth = require('../config/auth'); // use this one for testing
 dotenv.load();
 
 // normal routes ===============================================================
@@ -279,9 +281,12 @@ dotenv.load();
     	// This is your API key that you retrieve from www.mailgun.com/cp (free up to 10K monthly emails)
 		var auth = {
 		 auth: {
-		   api_key: 'key-0c00b9b72f45b0d5020ca798eb80ea7f', //MAILGUN_API_KEY,
+		 	// need to encrypt!!!
+	//	   api_key: 'key-0f4c723fa96c59328c9659405d0f14aa', //MAILGUN_API_KEY,
 	//	   domain: 'one of your domain names listed at your https://mailgun.com/app/domains'
-		   domain: 'mail.ourchestnuts.com'
+	//	   domain: 'mail.ourchestnuts.com'
+			api_key  : configAuth.mailGunAuth.api_key,
+			domain   : configAuth.mailGunAuth.domain
 		 }
 		}; 
 		
@@ -375,12 +380,14 @@ app.post('/reset', function(req, res) {
     function(user, done) {
     	// This is your API key that you retrieve from www.mailgun.com/cp (free up to 10K monthly emails)
 		var auth = {
-		 auth: {
-		   api_key: 'key-e9905ba5869c4e6828501e26884d2574', // MAILGUN_API_KEY,
+			 auth: {
+	//	   api_key: 'key-e9905ba5869c4e6828501e26884d2574', // MAILGUN_API_KEY,
 	//	   domain: 'one of your domain names listed at your https://mailgun.com/app/domains'
-		   domain: 'mail.ourchestnuts.com'
+	//	   domain: 'mail.ourchestnuts.com'
+				api_key  : configAuth.mailGunAuth.api_key,
+				domain   : configAuth.mailGunAuth.domain
+			 }
 		 }
-		} ;
 		
 
     	var nodemailerMailgun = nodemailer.createTransport(mg(auth));    	
