@@ -1,11 +1,13 @@
 lib-cov
 *.seed
 *.log
+*.bak
 *.csv
 *.dat
 *.out
 *.pid
 *.gz
+*.zip
 *.py
 .DS_Store
 /*.env

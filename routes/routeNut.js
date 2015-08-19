@@ -267,8 +267,7 @@ dotenv.load();
        		} else {
        			console.log("in app.post /forgot  where req.body.email is: " + req.body.email + " and user is: " + user);
        			user.local.resetPasswordToken = token;
-       			user.local.resetPasswordExpires = Date.now() + 3600000; // 1 hour
-       			debugger;
+       			user.local.resetPasswordExpires = Date.now() + 3600000; // 1 hour       		
        			user.local.save(function(err) {
        			  done(err, token, user);
        			 });
@@ -387,7 +386,7 @@ app.post('/reset', function(req, res) {
 				api_key  : configAuth.mailGunAuth.api_key,
 				domain   : configAuth.mailGunAuth.domain
 			 }
-		 }
+		 };
 		
 
     	var nodemailerMailgun = nodemailer.createTransport(mg(auth));    	
